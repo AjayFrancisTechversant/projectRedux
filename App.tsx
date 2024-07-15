@@ -4,7 +4,7 @@ import {ScreenContextProvider} from './src/Contexts/ScreenContext';
 import { Provider } from 'react-redux';
 import Store from './src/Redux/Store/Store';
 
-const App = () => {
+const App:React.FC = () => {
   return (
     <Provider store={Store}>
       <ScreenContextProvider>

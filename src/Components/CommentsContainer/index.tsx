@@ -1,11 +1,20 @@
 import {View, Text, VirtualizedList, ActivityIndicator} from 'react-native';
 import React from 'react';
 import {useScreenContext} from '../../Contexts/ScreenContext';
-import ColorPalette from '../../Assets/Themes/ColorPalette';
 import CommentCard from '../CommentCard';
+import {ColorPalette} from '../../Assets/Themes/ColorPalette';
+import {CommentItemType, UpdatingCommentDetailsType} from '../../types/types';
 import styles from './Style';
 
-const CommentsContainer = ({
+type CommentsContainerPropsType = {
+  loading: boolean;
+  comments: CommentItemType;
+  handleDeleteComment: (id: number) => Promise<void>;
+  handleUpdateComment: (
+    updatingCommentDetails: UpdatingCommentDetailsType,
+  ) => Promise<void>;
+};
+const CommentsContainer: React.FC<CommentsContainerPropsType> = ({
   loading,
   comments,
   handleDeleteComment,

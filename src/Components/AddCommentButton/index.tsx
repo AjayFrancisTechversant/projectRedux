@@ -4,16 +4,25 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {TextInput} from 'react-native-paper';
 import {useScreenContext} from '../../Contexts/ScreenContext';
-import StaticVariables from '../../Preferences/StaticVariables';
+import {ColorPalette} from '../../Assets/Themes/ColorPalette';
+import {StaticVariables} from '../../Preferences/StaticVariables';
+import {NewCommentDetailsType} from '../../types/types';
 import styles from './Style';
 
-const AddCommentButton = ({handleAddComment}) => {
+type AddCommentButtonPropsType = {
+  handleAddComment: (newCommentDetails: NewCommentDetailsType) => Promise<void>;
+};
+
+const AddCommentButton: React.FC<AddCommentButtonPropsType> = ({
+  handleAddComment,
+}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [newCommentDetails, setNewCommentDetails] = useState({
-    postId: 0,
-    userId: 0,
-    body: StaticVariables.EMPTY_STRING,
-  });
+  const [newCommentDetails, setNewCommentDetails] =
+    useState<NewCommentDetailsType>({
+      postId: undefined,
+      userId: undefined,
+      body: StaticVariables.EMPTY_STRING,
+    });
 
   const openModal = () => {
     setIsModalVisible(true);
@@ -28,16 +37,16 @@ const AddCommentButton = ({handleAddComment}) => {
   const handlePostButton = () => {
     handleAddComment(newCommentDetails);
     setNewCommentDetails({
-      postId: 0,
-      userId: 0,
+      postId: undefined,
+      userId: undefined,
       body: StaticVariables.EMPTY_STRING,
     });
     closeModal();
   };
   const handleCancel = () => {
     setNewCommentDetails({
-      postId: 0,
-      userId: 0,
+      postId: undefined,
+      userId: undefined,
       body: StaticVariables.EMPTY_STRING,
     });
     closeModal();
@@ -67,7 +76,6 @@ const AddCommentButton = ({handleAddComment}) => {
             </TouchableOpacity>
             <Text style={screenStyles.commentTitle}>Add Comment</Text>
             <TextInput
-              style={screenStyles.textInput}
               value={newCommentDetails.postId}
               onChangeText={e =>
                 setNewCommentDetails({...newCommentDetails, postId: e})
@@ -82,7 +90,6 @@ const AddCommentButton = ({handleAddComment}) => {
               activeOutlineColor={ColorPalette.lightOrange}
             />
             <TextInput
-              style={screenStyles.textInput}
               value={newCommentDetails.userId}
               onChangeText={e =>
                 setNewCommentDetails({...newCommentDetails, userId: e})
@@ -97,7 +104,6 @@ const AddCommentButton = ({handleAddComment}) => {
               activeOutlineColor={ColorPalette.lightOrange}
             />
             <TextInput
-              style={screenStyles.textInput}
               value={newCommentDetails.body}
               onChangeText={e =>
                 setNewCommentDetails({...newCommentDetails, body: e})

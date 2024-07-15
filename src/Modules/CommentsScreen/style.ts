@@ -1,6 +1,11 @@
 import {StyleSheet} from 'react-native';
+import {ScreenContextType} from '../../types/types';
 
-const styles = (screenContext, width, height) =>
+const styles = (
+  screenContext: ScreenContextType,
+  width: number,
+  height: number,
+) =>
   StyleSheet.create({
     canvas: {
       flex: 1,

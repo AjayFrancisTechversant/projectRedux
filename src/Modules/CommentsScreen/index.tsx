@@ -4,7 +4,6 @@ import {useScreenContext} from '../../Contexts/ScreenContext';
 import {useDispatch, useSelector} from 'react-redux';
 import CommentsContainer from '../../Components/CommentsContainer';
 import AddCommentButton from '../../Components/AddCommentButton';
-import styles from './Style';
 import {
   addComment,
   deleteComment,
@@ -12,6 +11,8 @@ import {
   updateComment,
 } from '../../Redux/Comments/actions';
 import {addNewComment} from '../../Services/API/CommentsAPIs';
+import styles from './style';
+import {NewCommentDetailsType, UpdatingCommentDetailsType} from '../../types/types';
 
 const CommentsScreen = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const CommentsScreen = () => {
     dispatch(fetchComments());
   }, [dispatch]);
 
-  const handleAddComment = async newCommentDetails => {
+  const handleAddComment = async (newCommentDetails: NewCommentDetailsType) => {
     try {
       const newlyAddedComment = await addNewComment(newCommentDetails);
       dispatch(addComment(newlyAddedComment));
@@ -28,14 +29,14 @@ const CommentsScreen = () => {
       console.log(error);
     }
   };
-  const handleDeleteComment = async id => {
+  const handleDeleteComment = async (id:number) => {
     try {
       dispatch(deleteComment(id));
     } catch (error) {
       console.log(error);
     }
   };
-  const handleUpdateComment = async updatingCommentDetails => {
+  const handleUpdateComment = async (updatingCommentDetails:UpdatingCommentDetailsType) => {
     try {
       dispatch(updateComment(updatingCommentDetails));
     } catch (error) {

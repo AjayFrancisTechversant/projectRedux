@@ -5,7 +5,7 @@ import {
   ADD_COMMENT,
   DELETE_COMMENT,
   UPDATE_COMMENT,
-} from './types';
+} from './ReduxTypes';
 
 const initialState = {
   loading: false,

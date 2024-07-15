@@ -6,7 +6,7 @@ import {
   ADD_COMMENT,
   DELETE_COMMENT,
   UPDATE_COMMENT,
-} from './types';
+} from './ReduxTypes';
 
 export const fetchCommentsRequest = () => ({
   type: FETCH_COMMENTS_REQUEST,

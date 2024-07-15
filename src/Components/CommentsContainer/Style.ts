@@ -1,7 +1,8 @@
 import {StyleSheet} from 'react-native';
-import ColorPalette from '../../Assets/Themes/ColorPalette';
+import { ScreenContextType } from '../../types/types';
+import { ColorPalette } from '../../Assets/Themes/ColorPalette';
 
-const styles = (screenContext, width, height) =>
+const styles = (screenContext:ScreenContextType, width:number, height:number) =>
   StyleSheet.create({
     commentsContainer: {
       backgroundColor: ColorPalette.lightOrange,
